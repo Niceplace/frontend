@@ -1,3 +1,6 @@
+// Id for the setInterval that will be called later
+var intervalID;
+
 /**
 * This is where everything starts
 */
@@ -10,8 +13,7 @@
         var tilesCount = parseInt($("#tilesSlider > .slider").text());
         var rowsCount = parseInt($("#rowsSlider > .slider").text());
 
-        // Id for the setInterval that will be called later
-        var intervalID;
+
 
         // Launch the animation with default values
         $.when(buildTiles(rowsCount,tilesCount)).done(animate());
@@ -56,8 +58,7 @@
                 var currentDiv = $(this);
                 $.when(generateRandomColor()).done(function (colorReturned){
                     //console.log("Function has executed for inner div" + colorReturned);
-                    currentDiv.animate({backgroundColor: colorReturned}, 500, "easeOutSine");
-
+                    currentDiv.animate({backgroundColor: colorReturned}, 500, "easeInOutExpo");
                 });
             })
         }, 2501);
