@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Color-Tiles</title>    
+    <link href="styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="viewspace">
+        <div id="controlPanel">
+            <div class="panel panel-info">
+                <div class="panel-heading">Control animation</div>
+                <div class="panel-body">
+
+                    <label for="rowsSlider">Number of rows</label>
+                    <div class="progress">
+                        <div id="rowsSlider" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="25" aria-valuemin="1" aria-valuemax="50" style="width: 100%">
+                            <span class="badge slider">25</span>
+                        </div>
+                    </div>
+
+                    <label for="tilesSlider">Number of tiles / row</label>
+                    <div class="progress">
+                        <div id="tilesSlider" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="1" aria-valuemax="100" style="width: 100%">
+                            <span class="badge slider">50</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="scripts/animateJQ.js"></script>
+
+</body>
+</html>
