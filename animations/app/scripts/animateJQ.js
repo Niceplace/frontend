@@ -6,13 +6,33 @@ var intervalID;
 */
     $(document).ready(function(){
         // Calculate the initial offset of the slider related to its parent
-        var position = Math.round(50*(parseInt($(".slider").position().left) / parseInt($(".slider").parent().width())));
-        $(".slider").text(position);
+        // Fixed width is 30px, minus 14 px padding (left/right)
+
+
+        var badgeWidth = 16;
+        var sliderParentWidth = parseFloat($("#tilesSlider > .slider").parent().width());
+
+        var tilesSliderPosition = $("#tilesSlider > .slider").position();
+        var rowsSliderPosition = $("#rowsSlider > .slider").position();
+        console.log("TOP"+tilesSliderPosition.top); #435/87
+        $("#tilesSlider > .slider").css({
+            position: "absolute",
+            top: tilesSliderPosition.top +"px",
+            left: (tilesSliderPosition.left) +"px"
+        });
+
+        $("#rowsSlider > .slider").css({
+            position: "absolute",
+            top: rowsSliderPosition.top +"px",
+            left: (rowsSliderPosition.left) +"px"
+        });
+
+
+        $(".slider").text(0);
 
         // Get the initial count for rows and tiles based upon the values of the sliders
         var tilesCount = parseInt($("#tilesSlider > .slider").text());
         var rowsCount = parseInt($("#rowsSlider > .slider").text());
-
 
 
         // Launch the animation with default values
@@ -25,10 +45,15 @@ var intervalID;
             axis:"x",
             containment: "parent",
             drag: function() {
-                var currentValue = Math.round(50* (parseInt($(this).position().left) / parseInt($(this).parent().width())));
-                //console.log("Current value is "+currentValue.toString());
+                var badgeWidth = $(this).width();;
+                var badgeOuterWidth = $(this).outerWidth();
+                var badgeOffsetLeft = parseFloat($(this).position().left);
+                var sliderRange = parseFloat($(this).parent().width() - badgeOuterWidth);
+                var currentPosition = parseFloat(badgeOffsetLeft - badgeWidth);
+                var currentValue = Math.round(50*(currentPosition/sliderRange)) ;
+
                 $(this).text(currentValue.toString());
-                $(this).parent().attr("aria-valuenow", currentValue.toString());
+
             },
             stop: function() {
                 tilesCount = parseInt($("#tilesSlider > .slider").text());
